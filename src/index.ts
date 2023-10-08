@@ -2,35 +2,16 @@ import path from "node:path";
 import { performance } from "node:perf_hooks";
 
 import type { CAC } from "cac";
-import {
-  ACTIVATION,
-  CodeGeniusOptions,
-  impSortGlob,
-  ImpSortOptions,
-  loggerInfo,
-  printError,
-  printInfo,
-} from "code-genius";
+import { ACTIVATION, loggerInfo, printError, printInfo } from "code-genius";
 import enquirer from "enquirer";
 import { ESLint } from "eslint";
 import fs from "fs-extra";
 
-const mergeConfig = async (config: CodeGeniusOptions) => {
-  const commands = config && config?.commands;
-  if (commands && commands.impsort) {
-    const { paths } = commands.impsort;
-    return {
-      paths: paths && paths.length > 0 ? paths : impSortGlob,
-    };
-  }
-  return {
-    paths: impSortGlob,
-  };
-};
+import { impSortGlob, ImpSortOptions } from "./common";
 
 const generateEnquirer = async (
-  config: CodeGeniusOptions,
-): Promise<ImpSortOptions> => {
+  paths: Array<string>,
+): Promise<Array<string>> => {
   const files = fs
     .readdirSync(path.join(process.cwd(), "."))
     .filter((v) => !v.startsWith("."))
@@ -41,7 +22,6 @@ const generateEnquirer = async (
       };
     });
   files.sort((v1, v2) => v1.sort - v2.sort);
-  const { paths } = await mergeConfig(config);
   const fileMultiChoices = files.map((v) => {
     return {
       name: `./${v.file}`,
@@ -57,9 +37,7 @@ const generateEnquirer = async (
       choices: fileMultiChoices,
     },
   ]);
-  return {
-    files: result.files,
-  };
+  return result.files;
 };
 
 const impSort = async (paths: string[]) => {
@@ -89,7 +67,8 @@ const impSort = async (paths: string[]) => {
   }
 };
 
-const impSortInstaller = (config: CodeGeniusOptions) => {
+const impSortInstaller = (config: ImpSortOptions) => {
+  const { files } = config;
   return {
     name: "impSortInstaller",
     setup: (cli: CAC) => {
@@ -99,11 +78,10 @@ const impSortInstaller = (config: CodeGeniusOptions) => {
         .option("-a, --ask", "启用询问模式")
         .action(async (options) => {
           const { pattern, ask } = options;
-          let paths = [];
+          let paths = files || impSortGlob;
           if (ask) {
-            const result = await generateEnquirer(config);
-            paths = result.files;
-          } else {
+            paths = await generateEnquirer(paths);
+          } else if (pattern) {
             paths = typeof pattern === "string" ? [pattern] : pattern;
           }
           const start = performance.now();

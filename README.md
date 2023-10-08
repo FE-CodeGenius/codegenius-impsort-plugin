@@ -1,4 +1,4 @@
-# codegenius-impsort-plugin
+# @codegenius/impsort-plugin
 
 运行 `eslint` 对模块导入进行分组&按字母排序, 支持命令模式, 询问模式和 API 模式;
 

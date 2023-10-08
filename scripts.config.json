@@ -1,0 +1,19 @@
+{
+  "scripts": [
+    {
+      "cmd": "prepare",
+      "script": "esno scripts/prepare.ts",
+      "desc": "自动执行脚本"
+    },
+    {
+      "cmd": "build",
+      "script": "rollup -c",
+      "desc": "构建脚本"
+    },
+    {
+      "cmd": "release",
+      "script": "release-it",
+      "desc": "发布脚本"
+    }
+  ]
+}

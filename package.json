@@ -1,0 +1,65 @@
+{
+  "name": "@codegenius/impsort-plugin",
+  "version": "0.0.0",
+  "description": "基于 CodeGenius 的 impsort 插件",
+  "author": {
+    "name": "OSpoon",
+    "email": "zxin088@gmail.com",
+    "url": "https://github.com/OSpoon"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/FE-CodeGenius/codegenius-impsort-plugin#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FE-CodeGenius/codegenius-impsort-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FE-CodeGenius/codegenius-impsort-plugin/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=14.17"
+  },
+  "scripts": {
+    "prepare": "esno scripts/prepare.ts",
+    "build": "rollup -c",
+    "release": "release-it"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@release-it/conventional-changelog": "^7.0.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/eslint": "^8.44.3",
+    "@types/fs-extra": "^11.0.2",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "code-genius": "^0.4.29",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "esno": "^0.17.0",
+    "release-it": "^16.2.1",
+    "rollup": "^4.0.2",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "simple-git-hooks": "^2.9.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx esno scripts/lint-script.ts",
+    "commit-msg": "codeg verify"
+  }
+}

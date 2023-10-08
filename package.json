@@ -1,6 +1,6 @@
 {
   "name": "@codegenius/impsort-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "基于 CodeGenius 的 impsort 插件",
   "author": {
     "name": "OSpoon",

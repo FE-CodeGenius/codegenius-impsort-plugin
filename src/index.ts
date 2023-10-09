@@ -97,4 +97,4 @@ const impSortInstaller = (config: ImpSortOptions) => {
   };
 };
 
-export { impSort, impSortGlob,impSortInstaller, ImpSortOptions };
+export { impSort, impSortGlob, impSortInstaller, ImpSortOptions };

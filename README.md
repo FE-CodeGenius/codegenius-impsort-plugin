@@ -4,6 +4,26 @@
 
 使用场景: 用于通过 `simple-import-sort` 插件来对导入模块进行排序且未直接配置插件到 `.eslintrc` 情况.
 
+
+## 安装
+
+``` bash
+npm i @codegenius/impsort-plugin -D
+```
+
+```javascript
+import { defineConfig } from "code-genius";
+import { impSortInstaller } from "@codegenius/impsort-plugin";
+
+export default defineConfig({
+  plugins: [
+    impSortInstaller(),
+  ],
+});
+```
+
+## 使用
+
 ### 命令模式
 
 ```bash
@@ -34,7 +54,7 @@ codeg impsort --ask
 ### API 模式
 
 ```typescript
-import { impSort } from "../src/index";
+import { impSort } from "@codegenius/impsort-plugin";
 
 (async () => {
   await impSort(["./src"]);
@@ -42,20 +62,3 @@ import { impSort } from "../src/index";
 ```
 
 PS: 依赖 `eslint` API 模式, 依赖 `simple-import-sort` 插件的同时依旧会读取项目配置的 `.eslintignore` 和 `.eslintrc.json` 文件, 使用 `impsort` 的同时将同步进行 `fix` 检测和修复.
-
-### 配置文件
-
-```typescript
-# 覆盖默认的 `impsort` 配置
-import { defineConfig } from "code-genius";
-
-export default defineConfig({
-  commands: {
-    format: {
-      impsort: ["./src", "./scripts"],
-    },
-  },
-});
-```
-
-

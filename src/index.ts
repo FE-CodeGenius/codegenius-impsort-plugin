@@ -7,7 +7,11 @@ import enquirer from "enquirer";
 import { ESLint } from "eslint";
 import fs from "fs-extra";
 
-import { impSortGlob, ImpSortOptions } from "./common";
+interface ImpSortOptions {
+  files: Array<string>;
+}
+
+const impSortGlob = ["./src"];
 
 const generateEnquirer = async (
   paths: Array<string>,
@@ -93,4 +97,4 @@ const impSortInstaller = (config: ImpSortOptions) => {
   };
 };
 
-export { impSort, impSortInstaller };
+export { impSort, impSortGlob,impSortInstaller, ImpSortOptions };

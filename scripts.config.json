@@ -2,7 +2,7 @@
   "scripts": [
     {
       "cmd": "prepare",
-      "script": "esno scripts/prepare.ts",
+      "script": "npx codeg hooks",
       "desc": "自动执行脚本"
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "cmd": "release",
-      "script": "release-it",
+      "script": "dotenv release-it --ci",
       "desc": "发布脚本"
     }
   ]

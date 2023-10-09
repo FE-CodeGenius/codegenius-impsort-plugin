@@ -37,19 +37,25 @@
     "node": ">=14.17"
   },
   "scripts": {
-    "prepare": "esno scripts/prepare.ts",
+    "prepare": "npx codeg hooks",
     "build": "rollup -c",
-    "release": "release-it"
+    "release": "dotenv release-it --ci"
   },
   "keywords": [],
   "devDependencies": {
+    "@codegenius/format-plugin": "^0.0.3",
+    "@codegenius/git-user-plugin": "^0.0.2",
+    "@codegenius/hooks-plugin": "^0.1.0",
+    "@codegenius/impsort-plugin": "^0.0.2",
+    "@codegenius/verify-plugin": "^0.0.1",
     "@release-it/conventional-changelog": "^7.0.2",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/eslint": "^8.44.3",
     "@types/fs-extra": "^11.0.2",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
-    "code-genius": "^0.4.29",
+    "code-genius": "^0.4.32",
+    "dotenv-cli": "^7.3.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "esno": "^0.17.0",
     "release-it": "^16.2.1",
@@ -60,6 +66,6 @@
   },
   "simple-git-hooks": {
     "pre-commit": "npx esno scripts/lint-script.ts",
-    "commit-msg": "codeg verify"
+    "commit-msg": "npx codeg verify"
   }
 }

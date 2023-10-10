@@ -74,7 +74,9 @@ const impSort = async (paths: string[]) => {
 const impSortInstaller = (config: ImpSortOptions) => {
   const { files } = config;
   return {
-    name: "impSortInstaller",
+    name: "impsort",
+    describe: "运行 eslint 对模块导入进行分组&按字母排序",
+    command: "impsort",
     setup: (cli: CAC) => {
       cli
         .command("impsort", "运行 eslint 对模块导入进行分组&按字母排序")

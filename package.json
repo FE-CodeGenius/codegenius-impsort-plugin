@@ -54,7 +54,7 @@
     "@types/eslint": "^8.44.3",
     "@types/fs-extra": "^11.0.2",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
-    "code-genius": "^0.4.32",
+    "code-genius": "^0.4.36",
     "dotenv-cli": "^7.3.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "esno": "^0.17.0",
